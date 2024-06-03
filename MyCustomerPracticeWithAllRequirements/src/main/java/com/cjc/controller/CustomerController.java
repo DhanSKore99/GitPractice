@@ -47,6 +47,7 @@ public class CustomerController {
 		 csi.saveCustomer(cu);
 		 log.info("New Customer details saved into database");
 		 System.out.println("Statement added today for practice");
+		 System.out.println("by dhanashri");
 		 return new ResponseEntity<String>("Customer saved..",HttpStatus.CREATED);
 		
 	}
