@@ -13,7 +13,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(CustomerNotFoundException.class)
 	public ResponseEntity<String> CustomerNotFoundExceptionHandler(CustomerNotFoundException e ){
 		
-		
+		System.out.println("sop statement added by dhanashri in exception handler class");
 		return new ResponseEntity<String>(e.getMessage(),HttpStatus.NOT_FOUND);
 	}
 
