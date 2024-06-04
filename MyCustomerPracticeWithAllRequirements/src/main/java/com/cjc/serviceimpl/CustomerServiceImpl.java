@@ -1,5 +1,7 @@
 package com.cjc.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,10 @@ public class CustomerServiceImpl implements CustomerServiceI{
 		cr.save(c);
 		
 	}
+
+	@Override
+	public List<Customer> getCustomers() {
+		return cr.findAll();
+		}
 
 }
