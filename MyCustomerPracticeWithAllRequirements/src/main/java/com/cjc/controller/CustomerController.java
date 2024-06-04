@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.MediaType;
+
+import com.cjc.exception.CustomerListNotFoundException;
 import com.cjc.model.Customer;
 import com.cjc.model.Document;
 import com.cjc.servicei.CustomerServiceI;
@@ -47,6 +49,7 @@ public class CustomerController {
 		 csi.saveCustomer(cu);
 		 log.info("New Customer details saved into database");
 		 System.out.println("Statement added today for practice");
+		System.out.println("Sop statement added from git in customer controller");
 
 		 return new ResponseEntity<String>("Customer saved..",HttpStatus.CREATED);
 		
@@ -64,8 +67,22 @@ public class CustomerController {
 	@GetMapping("/getAllCustomers")
 	public ResponseEntity<List<Customer>> getAllCustomers(){
 		List<Customer> list = csi.getCustomers();
-		return new ResponseEntity<List<Customer>>(list, HttpStatus.OK);
+		if(!list.isEmpty())
+		{
+			log.info("All Customer details fetched succcessfully.");
+			return new ResponseEntity<List<Customer>>(list, HttpStatus.OK);
+		}
+		else
+		{
+			log.error("List is Empty");
+			throw new CustomerListNotFoundException("List is Empty");
+		}
+		
+			
+		
+		
+		
 	}
-	
+
 
 }
